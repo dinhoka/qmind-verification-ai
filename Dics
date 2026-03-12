@@ -1,0 +1,481 @@
+# Q-MIND — Deep-Tech Startup Plan
+
+## One-Liner
+
+**Q-MIND is the verification layer for artificial intelligence: a symbolic engine that computes, proves, and explains — with zero hallucination.**
+
+---
+
+## The Problem — in one sentence
+
+> LLMs hallucinate math. CAS tools are inaccessible. Nobody verifies AI output.
+
+| Pain Point | Who Feels It | What They Do Today |
+|------------|-------------|-------------------|
+| ChatGPT/Claude can't guarantee 2+2=4 | Students, engineers, researchers | Double-check manually or pray |
+| CAS tools require `Integrate[f[x],{x,0,1}]` syntax | Everyone outside academia | Give up, trust the LLM |
+| No way to verify AI-generated math claims | Regulated industries (finance, engineering) | Hire human auditors at $200/hr |
+| Math tools don't speak Portuguese | 260M+ lusophone speakers | Use English or nothing |
+
+**Core insight:** In a world of probabilistic AI, deterministic symbolic reasoning becomes a premium layer — not a competitor to LLMs, but a **complement**.
+
+---
+
+## The Solution — in one demo
+
+### Demo 1: The Tutor That Never Hallucinates
+
+```
+Student: Resolva x^2 - 5x + 6 = 0 e verifique as solucoes
+
+Q-MIND:
+  Passo 1: Identificar equacao quadratica ax^2 + bx + c = 0
+           a=1, b=-5, c=6
+
+  Passo 2: Fatorar: (x-2)(x-3) = 0
+
+  Passo 3: Solucoes: x = 2, x = 3
+
+  Verificacao:
+    x=2: (2)^2 - 5(2) + 6 = 4 - 10 + 6 = 0  [ok]
+    x=3: (3)^2 - 5(3) + 6 = 9 - 15 + 6 = 0  [ok]
+
+  Status: VERIFIED (symbolic proof, deterministic)
+  Proof: VALID — both solutions satisfy the original equation
+```
+
+### Demo 2: Proof That No LLM Can Do
+
+```
+User: Prove que raiz de 2 eh irracional
+
+Q-MIND:
+  Prova por contradicao:
+
+  1. Suponha sqrt(2) = p/q, com p,q inteiros, mdc(p,q) = 1
+  2. Entao 2 = p^2/q^2, logo p^2 = 2q^2
+  3. p^2 e par, logo p e par. Seja p = 2k.
+  4. (2k)^2 = 2q^2 -> 4k^2 = 2q^2 -> q^2 = 2k^2
+  5. q^2 e par, logo q e par.
+  6. Contradicao: p e q ambos pares -> mdc(p,q) >= 2.
+
+  Resultado: sqrt(2) e irracional. QED.
+```
+
+### Demo 3: Bitcoin Pipeline From Scratch
+
+```
+User: Gere um endereco Bitcoin a partir desta chave privada:
+      b202c809...
+
+Q-MIND:
+  1. Chave privada -> Ponto na curva secp256k1 (ECC)
+  2. Chave publica comprimida: 02af19df...
+  3. SHA256 -> RIPEMD160 (Hash160): 43db5cdb...
+  4. Base58Check encoding: 1GRt1Kk...
+  5. Bech32 encoding: bc1qg0d...
+
+  Todo pipeline calculado do zero — sem bibliotecas externas.
+```
+
+**Nenhum LLM consegue fazer isso de forma deterministica.**
+
+---
+
+## Architecture — One Diagram
+
+```
+                        Usuario
+                          |
+                   [Linguagem Natural]
+                     PT / EN / LaTeX
+                          |
+                    +-----v------+
+                    |   Parser   |  NLP + LaTeX + Text
+                    +-----+------+
+                          |
+                    +-----v------+
+                    |  Cognitive  |  Extractor + Classifier + Router
+                    +-----+------+
+                          |
+                    +-----v------+
+                    |  Strategy   |  Cost-aware multi-path exploration
+                    |  Engine     |  (chooses best solving approach)
+                    +-----+------+
+                          |
+              +-----------+-----------+
+              |           |           |
+        +-----v--+  +----v---+  +----v----+
+        |Symbolic |  |  SMT   |  | Number  |  ...more engines
+        | Algebra |  | Solver |  | Theory  |
+        | Engine  |  | Engine |  | Engine  |
+        +-----+---+  +----+---+  +----+----+
+              |           |           |
+              +-----------+-----------+
+                          |
+                    +-----v------+
+                    |  Prover +  |  Formal verification
+                    |  Verifier  |  Counterexample search
+                    +-----+------+
+                          |
+                    +-----v------+
+                    | Explanation |  Step-by-step, bilingual
+                    |  Generator  |  LaTeX / Markdown / JSON
+                    +-----+------+
+                          |
+                    +-----v------+
+                    | Knowledge  |  4,000+ entities + Semantic KG (SQLite)
+                    |   Graph    |  (grows with every query)
+                    +------------+
+```
+
+**35+ modules. 1,253 tests. 19 API endpoints. LGPD-compliant. Zero hallucination.**
+
+---
+
+## Market Opportunity
+
+### The Photomath Signal
+
+Google acquired **Photomath** for **~$500M** (2022).
+
+Photomath solves K-12 algebra with camera input.
+
+**Q-MIND goes further:**
+- University-level math (calculus, proofs, number theory)
+- Formal verification (not just answers — proofs)
+- Conversational (not just camera — natural language)
+- Extensible (crypto, physics, finance — any symbolic domain)
+
+### TAM / SAM / SOM
+
+| Level | Market | Size |
+|-------|--------|------|
+| **TAM** | AI Infrastructure + Developer Tools + Scientific Computing + Fintech Compliance | $50B+ |
+| **SAM** | AI Verification + Computational Knowledge Engines (Wolfram, MATLAB, Maple) | $5B |
+| **SOM** | Bilingual symbolic math + verified computation + university adoption | $200M |
+
+**Why the TAM is larger than it looks:** Q-MIND is not an EdTech tool. It's AI verification infrastructure. Every LLM pipeline that outputs math, every fintech that audits calculations, every compliance system that needs explainable AI — they all need a verification layer. The AI infrastructure market dwarfs EdTech.
+
+### Why Now
+
+1. **LLM trust crisis for STEM** — GPT-4 fails 30%+ of math benchmarks
+2. **EU AI Act + AI Safety** — mandates explainable, auditable AI for high-risk domains. As AI systems become more autonomous, verification becomes **critical infrastructure for AI safety and compliance.**
+3. **Open-source momentum** — companies want self-hosted, auditable AI
+4. **No verified reasoning dataset exists** — LLMs are bad at math because no one has large-scale verified reasoning data. Q-MIND produces this as a byproduct.
+5. **260M Portuguese speakers** — zero native computational math engine
+
+---
+
+## Positioning
+
+### Not a competitor to LLMs. A complement.
+
+```
+                    Correctness
+                         ^
+                         |
+         Q-MIND          |  Wolfram Alpha
+    (open, bilingual,    |  (closed, mature,
+     growing)            |   expensive)
+                         |
+  -------+---------------+---------------->
+         |                   Accessibility
+         |
+  Lean/Coq               ChatGPT / Claude
+  (correct but           (accessible but
+   inaccessible)          hallucinates)
+```
+
+**Q-MIND occupies the empty quadrant: correct AND accessible.**
+
+### The Killer Positioning
+
+> **LLMs are the language layer. Q-MIND is the verification layer.**
+
+Every AI system that outputs math, logic, or computation needs a way to verify correctness. Q-MIND is that layer.
+
+This means Q-MIND is not limited to end-users. It can be:
+- **Embedded** in LLM pipelines (verify ChatGPT's math output)
+- **Used by** compliance systems (audit AI-generated financial calculations)
+- **Integrated into** education platforms (guarantee correct step-by-step solutions)
+- **Deployed as** AI safety infrastructure (verify autonomous AI reasoning before execution)
+
+### The Dataset Angle — Why Q-MIND Is More Than Verification
+
+Q-MIND doesn't just verify math. It **produces the training data that would make LLMs good at math.** Every query generates a verified reasoning example — problem, steps, proof, solution — exportable to HuggingFace. No company in the world has this dataset at scale. This means Q-MIND has two revenue streams: verification API + reasoning data licensing.
+
+---
+
+## The Real Moat
+
+Not the number of tests. Not the architecture. **Four things that compound over time:**
+
+### 1. Reasoning Graph Database — The Nuclear Asset
+
+Every problem Q-MIND solves becomes a **versioned reasoning artifact**: a DAG of input, reasoning steps, proof, and verified output — all content-addressed with SHA256 hashes.
+
+```
+Query: "solve x^2 - 5x + 6 = 0"
+  |
+  v
+Reasoning Graph:
+  [parse] -> [classify: quadratic] -> [factor] -> [solve] -> [verify]
+  |                                                              |
+  Hash: 7f3a2b...                                    Proof: VALID
+  |
+  Stored in: Reasoning Graph Database (SQLite)
+  Reusable by: any future query with same structure
+```
+
+This is **GitHub + Wolfram + Wikipedia for mathematical reasoning.**
+
+Over time, this becomes the largest dataset of **verified, structured mathematical reasoning** in the world. No company has this — not OpenAI, not Google, not Wolfram.
+
+| Today | Year 2 | Year 3 |
+|-------|--------|--------|
+| Reasoning Graph DB | 100K graphs | 10M graphs |
+| Deduplication rate | — | 40%+ query reuse |
+
+**This is nearly impossible to replicate.** You can't buy reasoning graphs — you have to compute, verify, and store them one by one.
+
+### 2. Reasoning Dataset — The Training Data Moat
+
+Every execution generates a structured training example:
+
+```json
+{
+  "problem": "solve x^2 - 5x + 6 = 0",
+  "reasoning_graph": { "nodes": [...], "edges": [...] },
+  "proof": { "steps": [...], "status": "VALID" },
+  "solution": { "x": [2, 3] },
+  "verification": "symbolic"
+}
+```
+
+This becomes a **Reasoning Dataset** — exportable to JSON, JSONL, CSV, HuggingFace format. PII-anonymized. Ready for fine-tuning.
+
+**No company in the world has a large-scale dataset of verified mathematical reasoning.** This is the data that would make LLMs actually good at math — and Q-MIND is the only system that generates it as a byproduct of normal operation.
+
+### 3. Knowledge Graph (Network Effect on Knowledge)
+
+Every theorem, identity, and relation added makes the system more powerful.
+
+| Today | Year 2 | Year 3 |
+|-------|--------|--------|
+| 4,000+ entities | 10,000 entities | 50,000 entities |
+
+Like Google's Knowledge Graph or Wolfram's Knowledgebase — once you have 10K+ entities with rich relations, it's nearly impossible to replicate.
+
+### 4. Formal Proof + Computation + NL (Rare Intersection)
+
+Almost no system combines:
+- Symbolic computation (CAS-grade algebra, calculus, number theory)
+- Formal verification (proofs, counterexamples, Lean4 export)
+- Natural language interface (bilingual conversation, step-by-step)
+
+Q-MIND does all three. This intersection is extremely hard to build.
+
+### 5. Deterministic Correctness (Premium in a Probabilistic World)
+
+In industries where wrong = catastrophic:
+- **Engineering**: structural calculations, control systems
+- **Finance**: pricing models, risk calculations
+- **Cryptography**: key generation, signature verification
+- **Science**: reproducible computational results
+
+Deterministic symbolic AI becomes a **regulatory requirement**, not a feature.
+
+---
+
+## Business Model
+
+### Phase 1: Open Core (Year 1)
+
+| Open Source (free) | Commercial (paid) |
+|---|---|
+| Core engines | Priority support |
+| Basic conversation | Custom domain plugins |
+| CLI + API | SLA guarantees |
+| Community edition | On-premise deployment |
+
+### Phase 2: Platform (Year 2)
+
+| Product | Target | Pricing |
+|---------|--------|---------|
+| **Q-MIND Cloud** | Students, indie devs | Freemium ($9/29/99/mo) |
+| **Q-MIND Enterprise** | Universities, companies | $10K-100K/year |
+| **Q-MIND Edu** | Schools, bootcamps | $2/student/month |
+| **Verification API** | LLM companies, fintechs | Pay-per-query |
+
+### Phase 3: Knowledge Economy (Year 3+)
+
+| Product | Description |
+|---------|-------------|
+| **Verified Computation API** | Guaranteed-correct answers, metered pricing |
+| **Domain Knowledge Packs** | Finance, engineering, biotech, physics |
+| **"Verified by Q-MIND" Certification** | Stamp for AI-generated mathematical claims |
+
+### Revenue Projections
+
+| Year | ARR | Customers | Key Milestone |
+|------|-----|-----------|---------------|
+| Y1 | $0 | 500 OSS users | Community, grants, paper |
+| Y2 | $300K | 50 paid + 5K free | Cloud launch, first enterprise |
+| Y3 | $2M | 200 paid + 20K free | Verification API, Edu traction |
+| Y4 | $8M | 500 paid + 50K free | Platform effects |
+| Y5 | $25M | 1,500 paid + 100K free | Knowledge economy |
+
+---
+
+## What Exists Today (Built, Tested, Working)
+
+| Capability | Details | Tests |
+|-----------|---------|-------|
+| Math Engine | Algebra, calculus, simplification, limits, series | 150+ |
+| Logic Engine | SAT/SMT, constraints, Boolean satisfiability | 40+ |
+| Number Theory | Primality, factorization, modular arithmetic | 30+ |
+| Proof System | Proofs + verification + counterexamples + Lean4 export + comparison | 60+ |
+| Sequence Analysis | Pattern detection, conjecture generation, research pipeline | 80+ |
+| Crypto Domain | Full Bitcoin pipeline (ECC + hashing + encoding + encyclopedia) | 100+ |
+| Knowledge Graph | 4,000+ entities + SQLite + bulk import + D3.js visualization | 90+ |
+| Conversation | 16 intent types, compound requests, multi-turn memory | 60+ |
+| Cognitive Layer | Math extractor, 25-category classifier, reasoning router | 40+ |
+| Computational Graph | DAG execution + Query IR + async parallel + caching | 40+ |
+| Strategy Engine | 6 domains, heuristic classifier, learning, fallback chain | 25+ |
+| NLP Parser | PT + EN, implicit multiplication, LaTeX, natural language | 40+ |
+| LLM Integration | OpenAI + Anthropic + LangChain tools, agent integration, benchmark | 30+ |
+| Plugin System | 3 plugins (physics, finance, chemistry), marketplace, SDK | 20+ |
+| API + SDKs | FastAPI REST (19 endpoints, LGPD) + Python SDK + JS SDK + Rust SDK + SSE | 30+ |
+| API Infrastructure | Rate limiting, API keys, Prometheus metrics, versioning, billing, dashboard | 20+ |
+| Reasoning Graph DB | SQLite graph storage, SHA256 hashing, deduplication, query interface | 20+ |
+| Reasoning Dataset | Schema, PII anonymization, JSON/JSONL/CSV/HuggingFace export | 15+ |
+| Performance & Scale | Distributed execution, parallel solver, latency tracking (p50/p95/p99) | 15+ |
+| Plugin Sandbox | Isolated execution, time/memory limits, import guard | 10+ |
+| Web Interface | Next.js chat interface with dark theme | 10+ |
+| LGPD Compliance | Privacy policy, consent, data portability, erasure, PII scrubbing, session auto-expiry | 10+ |
+| **Total** | **35+ modules, fully integrated** | **1,253** |
+
+---
+
+## Competitive Landscape
+
+| Competitor | Strength | Weakness | Q-MIND Advantage |
+|-----------|----------|----------|-----------------|
+| **Wolfram Alpha** | Massive knowledge, 15+ years | Closed, English-centric, $150+/yr | Open source, bilingual, extensible |
+| **ChatGPT/Claude** | Fluent, general | Hallucinates math, no proofs | Deterministic, provable, verifiable |
+| **Open CAS tools** | Powerful computation | No NL interface, no conversation, no proofs | Full NL + conversation + proofs + dataset |
+| **Lean/Coq** | Formal verification gold standard | PhD-level learning curve | Accessible via natural language |
+| **Photomath** | Mobile, visual, acquired for $500M | K-12 only, no proofs, no API | University-level + research + API |
+
+---
+
+## Go-To-Market
+
+### The Distribution Challenge
+
+History shows that technically brilliant systems (Maple, Mathematica, Coq) rarely become mass products. **Distribution is the real risk, not technology.**
+
+Our strategy: **universities first, API second, platform third.** Universities are the ideal wedge because professors hate LLM errors, students use LLMs anyway, and the solution is LLM + verification. Every university deployment generates reasoning graphs that compound into our dataset moat.
+
+### Phase 1: University Wedge + Community (Months 1-12)
+
+1. **3-5 university partnerships** — math departments adopt Q-MIND as verification layer alongside LLMs. Professors get zero-hallucination tutoring; we get reasoning data.
+2. **Open-source launch** with excellent documentation
+3. **Academic paper** at AAAI/NeurIPS (symbolic AI track)
+4. **Content marketing**: "Why ChatGPT Can't Do Math" series
+5. **Bitcoin community**: present crypto pipeline at conferences
+6. **Portuguese market**: first-mover advantage, 260M speakers
+
+### Phase 2: Verification API + Revenue (Months 12-24)
+
+1. **Verification API** for LLM companies (the real business)
+2. **Q-MIND Cloud** beta (freemium SaaS)
+3. **5 enterprise pilots** (fintech, engineering)
+4. **10 Edu partnerships** — scale university model
+5. **Reasoning Dataset** — first public release (HuggingFace)
+
+### Phase 3: Platform + Scale (Months 24-36)
+
+1. **Knowledge marketplace** (user-contributed domains)
+2. **"Verified by Q-MIND" certification** — stamp for AI-generated math
+3. **Reasoning Dataset licensing** — fine-tuning data for LLM companies
+4. **Cross-domain expansion** (physics, chemistry, finance)
+5. **Mobile app** (Photomath for university level)
+
+---
+
+## Key Metrics
+
+| Metric | Y1 | Y2 | Y3 |
+|--------|-----|-----|-----|
+| GitHub stars | 5K | 15K | 30K |
+| Monthly active users | 2K | 20K | 100K |
+| Knowledge entities | 500 | 5,000 | 50,000 |
+| Paying customers | 0 | 50 | 200 |
+| ARR | $0 | $300K | $2M |
+| Domains | 5 | 12 | 25 |
+| Languages | 2 (PT/EN) | 4 (+ES/FR) | 8 |
+
+---
+
+## Team & Funding
+
+### Founding Team (3-4 people)
+
+| Role | Focus |
+|------|-------|
+| CEO / Founder | Vision, fundraising, community |
+| CTO / Lead Engineer | Architecture, core engines |
+| Head of Knowledge | KG curation, domain expansion |
+| Head of Product | UX, EdTech, customer development |
+
+### Pre-Seed: $500K for 18 months
+
+**Use of funds:**
+- 12 months runway (2-3 founders)
+- Cloud infrastructure
+- Conference attendance (AAAI, NeurIPS, PyCon)
+
+**Milestones:**
+- Verification API v1 shipped
+- 5K GitHub stars
+- 3 university partnerships
+- Academic paper published
+- 3 enterprise LOIs
+
+**Target investors:**
+- Deep-tech pre-seed (Pear VC, Conviction, Lux Capital)
+- AI research grants (NSF, FAPESP, EU Horizon)
+- Angels from Wolfram/MATLAB ecosystem
+
+---
+
+## Why This Wins
+
+**1. Correctness is a feature, not a bug.**
+In a world of hallucinating LLMs, deterministic symbolic AI is a premium differentiator.
+
+**2. Verification layer > standalone tool.**
+Q-MIND doesn't compete with ChatGPT — it makes ChatGPT trustworthy for math. The market for "AI verification" is about to explode.
+
+**3. The Reasoning Dataset is the real prize.**
+Every query generates verified reasoning data. No company in the world has a large-scale dataset of structured, verified mathematical reasoning. This is the training data that would make LLMs actually good at math — and Q-MIND generates it as a byproduct.
+
+**4. Knowledge compounds.**
+Every entity in the Knowledge Graph, every reasoning graph in the database, makes the system more valuable. This is a network effect on knowledge itself.
+
+**5. The Wolfram gap is real.**
+Wolfram Alpha is proprietary, expensive, English-centric, and hasn't had a major innovation in 15 years. The market is ready for an open alternative.
+
+**6. University wedge solves distribution.**
+260M Portuguese speakers, zero native computational math engine. Professors hate LLM errors, students use LLMs anyway. Q-MIND bridges the gap — and every university deployment feeds the reasoning dataset.
+
+---
+
+## The Ask
+
+**Pre-seed: $500K for 18 months to ship the Verification API and establish product-market fit with 5 university partners.**
+
+> Q-MIND: the verification layer for artificial intelligence.
+> Symbolic reasoning that computes, proves, and explains — without hallucination.
